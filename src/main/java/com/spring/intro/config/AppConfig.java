@@ -22,8 +22,12 @@ public class AppConfig {
     private static final String HB_SHOW_SQL = "hibernate.show_sql";
     private static final String HB_FORMAT_SQL = "hibernate.format_sql";
     private static final String HB_HBM_2_DDL_AUTO = "hibernate.hbm2ddl.auto";
+    private final Environment environment;
+
     @Autowired
-    private Environment environment;
+    public AppConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean
     public DataSource getDataSource() {
