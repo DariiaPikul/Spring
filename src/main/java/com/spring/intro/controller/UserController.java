@@ -30,14 +30,9 @@ public class UserController {
         return "Four users were injected successfully";
     }
 
-    @GetMapping("/user_id={userId}")
+    @GetMapping("/{userId}")
     public UserResponseDto get(@PathVariable Long userId) {
         return mapToDto(userService.get(userId));
-    }
-
-    @GetMapping("/user_email={email}")
-    public UserResponseDto get(@PathVariable String email) {
-        return mapToDto(userService.findByEmail(email));
     }
 
     @GetMapping("/all")
