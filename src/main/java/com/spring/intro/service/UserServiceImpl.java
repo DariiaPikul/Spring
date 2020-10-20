@@ -22,4 +22,14 @@ public class UserServiceImpl implements UserService {
     public List<User> listUsers() {
         return userDao.getAll();
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email).get();
+    }
+
+    @Override
+    public User get(Long id) {
+        return userDao.get(id).get();
+    }
 }

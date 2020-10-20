@@ -7,4 +7,8 @@ public interface UserService {
     void add(User user);
 
     List<User> listUsers();
+
+    User findByEmail(String email);
+
+    User get(Long id);
 }

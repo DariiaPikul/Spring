@@ -2,6 +2,7 @@ package com.spring.intro.dao;
 
 import com.spring.intro.model.User;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,6 +42,24 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAll() {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM User", User.class).getResultList();
+        }
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM User WHERE email = :email", User.class)
+                    .setParameter("email", email)
+                    .uniqueResultOptional();
+        }
+    }
+
+    @Override
+    public Optional<User> get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM User WHERE id = :id", User.class)
+                    .setParameter("id", id)
+                    .uniqueResultOptional();
         }
     }
 }
