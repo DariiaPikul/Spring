@@ -35,7 +35,7 @@ public class UserController {
         return mapToDto(userService.get(userId));
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<UserResponseDto> getAll() {
         return userService.listUsers().stream()
                 .map(this::mapToDto)
@@ -43,6 +43,10 @@ public class UserController {
     }
 
     private UserResponseDto mapToDto(User user) {
-        return new UserResponseDto(user.getId(), user.getEmail(), user.getPassword());
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(user.getId());
+        userResponseDto.setEmail(user.getEmail());
+        userResponseDto.setPassword(user.getPassword());
+        return userResponseDto;
     }
 }
